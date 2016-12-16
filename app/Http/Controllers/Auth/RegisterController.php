@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Cartel;
+use App\Game;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -42,7 +44,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -57,15 +59,27 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $cartel = Cartel::find($data['cartel']);
+
+        $game = new Game();
+        $game->user()->associate($user);
+        $game->cartel()->associate($cartel);
+        $game->map_x = rand(0, 100);
+        $game->map_y = rand(0, 100);
+        $game->save();
+
+        return $user;
+
     }
 }
