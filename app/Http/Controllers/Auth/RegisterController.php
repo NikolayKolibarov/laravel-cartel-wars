@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Cartel;
-use App\Game;
+use App\CartelType;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -70,14 +70,24 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        $cartel = Cartel::find($data['cartel']);
+        $medellinCartel = CartelType::find(2);
+        $bratva = CartelType::find(1);
 
-        $game = new Game();
-        $game->user()->associate($user);
-        $game->cartel()->associate($cartel);
-        $game->map_x = rand(0, 100);
-        $game->map_y = rand(0, 100);
-        $game->save();
+        $colombian_cartel = new Cartel();
+        $colombian_cartel->user()->associate($user);
+        $colombian_cartel->cartelType()->associate($medellinCartel);
+        $colombian_cartel->location_x = rand(0, 100);
+        $colombian_cartel->location_y = rand(0, 100);
+        $colombian_cartel->level = 1;
+        $colombian_cartel->save();
+
+        $russian_cartel = new Cartel();
+        $russian_cartel->user()->associate($user);
+        $russian_cartel->cartelType()->associate($bratva);
+        $russian_cartel->location_x = rand(0, 100);
+        $russian_cartel->location_y = rand(0, 100);
+        $russian_cartel->level = 1;
+        $russian_cartel->save();
 
         return $user;
 

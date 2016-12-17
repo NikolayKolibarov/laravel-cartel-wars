@@ -30,8 +30,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function game()
+
+    public function cartels()
     {
-        return $this->hasOne('App\Game');
+        return $this->hasMany('App\Cartel');
     }
 }

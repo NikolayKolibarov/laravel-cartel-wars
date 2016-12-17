@@ -78,7 +78,7 @@
                     Cartel Wars
                 </div>
 
-               <p>Choose your cartel and start growing</p>
+               <p>Gather respect and become the most wealthy and influential cartel</p>
             </div>
         </div>
     </body>

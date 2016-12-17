@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCartelsTable extends Migration
+class CreateResourcesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateCartelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cartels', function (Blueprint $table) {
+        Schema::create('resources', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('cartel_type_id');
-            $table->double('location_x');
-            $table->double('location_y');
-            $table->integer('level');
+            $table->integer('resource_building_id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateCartelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cartels');
+        Schema::dropIfExists('resources');
     }
 }

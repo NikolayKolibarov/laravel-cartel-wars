@@ -63,20 +63,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="platform" class="col-md-4 control-label">Cartel</label>
-
-                                <div class="col-md-6">
-                                    @foreach($cartels as $cartel)
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="cartel"
-                                                       value="{{ $cartel->id }}">{{ $cartel->name }}
-                                            </label>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
