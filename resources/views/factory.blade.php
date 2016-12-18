@@ -7,6 +7,34 @@
         </div>
 
         <div class="row">
+            @if(Session::has('added'))
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="alert alert-success">
+                                <p class="has-success">{{ Session::get('added') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('error'))
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="alert alert-danger">
+                                <p class="has-success">{{ Session::get('error') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+        </div>
+
+
+        <div class="row">
             <div class="panel panel-default">
                 <div class="panel-heading">Resource Buildings</div>
                 <div class="panel-body">
@@ -17,7 +45,7 @@
                                 <h1>{{ $resourceBuilding->name }}</h1>
                                 <h3>Price: <strong>${{ $resourceBuilding->price }}</strong></h3>
                                 <h3>{{ $resourceBuilding->resource->name }} per hour:
-                                    <strong>${{ $resourceBuilding->income_per_hour }} </strong></h3>
+                                    <strong>{{ $resourceBuilding->income_per_hour }}g</strong></h3>
                                 <form method="POST"
                                       action="{{ route('cartel-build-resource-building', ['cartel_id' => $cartel->id, 'building_id' => $resourceBuilding->id]) }}">
                                     <button class="btn btn-default">Build</button>
@@ -51,6 +79,7 @@
                                     @endforeach
                                 </ul>
                                 <h3>Price: <strong>${{ $armyBuilding->price }}</strong></h3>
+                                <h3>Build time: <strong>{{ $armyBuilding->build_time }} min.</strong></h3>
                                 <form method="POST"
                                       action="{{ route('cartel-build-army-building', ['cartel_id' => $cartel->id, 'building_id' => $armyBuilding->id]) }}">
                                     <button class="btn btn-default">Build</button>

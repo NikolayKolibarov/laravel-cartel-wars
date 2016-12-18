@@ -18,6 +18,7 @@ class CreateArmyBuildingsTable extends Migration
             $table->integer('cartel_type_id');
             $table->string('name');
             $table->integer('price');
+            $table->integer('build_time');
             $table->timestamps();
         });
     }

@@ -23,29 +23,18 @@
                 </div>
             @endif
 
-            @if(Session::has('edited'))
+            @if(Session::has('error'))
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
-                            <div class="alert alert-success">
-                                <p class="has-success">{{ Session::get('edited') }}</p>
+                            <div class="alert alert-danger">
+                                <p class="has-success">{{ Session::get('error') }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             @endif
 
-            @if(Session::has('deleted'))
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <div class="alert alert-success">
-                                <p class="has-success">{{ Session::get('deleted') }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
         </div>
 
         <p></p>
