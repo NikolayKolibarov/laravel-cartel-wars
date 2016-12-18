@@ -21,9 +21,18 @@ class Cartel extends Model
         return $this->hasMany('App\CartelResourceBuilding');
     }
 
+    public function cartelArmyBuildings()
+    {
+        return $this->hasMany('App\CartelArmyBuilding');
+    }
+
     public function cartelResources()
     {
         return $this->hasMany('App\CartelResource');
     }
 
+    public function cartelArmyUnits()
+    {
+        return $this->hasMany('App\CartelArmyUnit');
+    }
 }

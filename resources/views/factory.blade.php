@@ -12,13 +12,11 @@
 
                     @foreach($cartelType->resourceBuildings as $resourceBuilding)
                         <div class="row">
-                            <div class="col-md-3 col-md-offset-2">
+                            <div class="col-md-6">
                                 <h1>{{ $resourceBuilding->name }}</h1>
-                            </div>
-                            <div class="col-md-4 ">
-                                <h1>Price: ${{ $resourceBuilding->price }}</h1>
-                            </div>
-                            <div class="col-md-2">
+                                <h3>Price: <strong>${{ $resourceBuilding->price }}</strong></h3>
+                                <h3>{{ $resourceBuilding->resource->name }} per hour:
+                                    <strong>${{ $resourceBuilding->income_per_hour }} </strong></h3>
                                 <form action="">
                                     <button class="btn btn-default">Build</button>
                                 </form>

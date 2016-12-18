@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <h1>{{ $cartel->cartelType->name }}</h1>
-            <p>Money: <strong> {{ $cartel->money }}</strong></p>
+            <p>Money: <strong> ${{ $cartel->money }}</strong></p>
         </div>
 
         <div class="row">

@@ -31,7 +31,7 @@ class CartelsController extends Controller
     public function showFactory($type)
     {
 
-        $cartelType = CartelType::where('name', $type)->first();
+        $cartelType = CartelType::where('name', $type)->first() ;
 
         return view('factory', ['cartelType' => $cartelType]);
     }
