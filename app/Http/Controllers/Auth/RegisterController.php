@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Cartel;
 use App\CartelResource;
+use App\CartelResourceBuilding;
 use App\CartelType;
 use App\User;
 use Validator;
@@ -30,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard/all';
+    protected $redirectTo = '/cartels';
 
     /**
      * Create a new controller instance.
@@ -80,9 +81,16 @@ class RegisterController extends Controller
         $colombian_cartel->location_x = rand(0, 100);
         $colombian_cartel->location_y = rand(0, 100);
         $colombian_cartel->level = 1;
+        $colombian_cartel->money = 2000;
         $colombian_cartel->save();
 
         foreach ($colombian_cartel->cartelType->resourceBuildings as $resourceBuilding) {
+            $cartelResourceBuilding = new CartelResourceBuilding();
+            $cartelResourceBuilding->cartel()->associate($colombian_cartel);
+            $cartelResourceBuilding->resourceBuilding()->associate($resourceBuilding);
+            $cartelResourceBuilding->level = 1;
+            $cartelResourceBuilding->save();
+
             $cartelResource = new CartelResource();
             $cartelResource->cartel()->associate($colombian_cartel);
             $cartelResource->resource()->associate($resourceBuilding->resource);
@@ -96,9 +104,16 @@ class RegisterController extends Controller
         $russian_cartel->location_x = rand(0, 100);
         $russian_cartel->location_y = rand(0, 100);
         $russian_cartel->level = 1;
+        $russian_cartel->money = 2000;
         $russian_cartel->save();
 
         foreach ($russian_cartel->cartelType->resourceBuildings as $resourceBuilding) {
+            $cartelResourceBuilding = new CartelResourceBuilding();
+            $cartelResourceBuilding->cartel()->associate($russian_cartel);
+            $cartelResourceBuilding->resourceBuilding()->associate($resourceBuilding);
+            $cartelResourceBuilding->level = 1;
+            $cartelResourceBuilding->save();
+
             $cartelResource = new CartelResource();
             $cartelResource->cartel()->associate($russian_cartel);
             $cartelResource->resource()->associate($resourceBuilding->resource);

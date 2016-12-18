@@ -20,6 +20,7 @@ class CreateCartelsTable extends Migration
             $table->double('location_x');
             $table->double('location_y');
             $table->integer('level');
+            $table->decimal('money');
             $table->timestamps();
         });
     }

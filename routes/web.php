@@ -19,14 +19,19 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('/dashboard/all', [
+    Route::get('/cartels', [
         'uses' => 'CartelsController@showDashboard',
         'as' => 'cartel-dashboard'
     ]);
 
-    Route::get('/dashboard/{cartel_id}', [
+    Route::get('/cartels/{cartel_id}', [
         'uses' => 'CartelsController@showCartel',
         'as' => 'cartel-details'
+    ]);
+
+    Route::get('/cartels/{type}/factory', [
+        'uses' => 'CartelsController@showFactory',
+        'as' => 'cartel-factory'
     ]);
 
 });
