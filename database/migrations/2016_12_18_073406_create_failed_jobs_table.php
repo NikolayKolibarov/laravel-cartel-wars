@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCartelsTable extends Migration
+class CreateFailedJobsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateCartelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cartels', function (Blueprint $table) {
+        Schema::create('failed_jobs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('cartel_type_id');
-            $table->double('location_x');
-            $table->double('location_y');
-            $table->integer('level');
-            $table->timestamps();
+            $table->text('connection');
+            $table->text('queue');
+            $table->longText('payload');
+            $table->longText('exception');
+            $table->timestamp('failed_at')->useCurrent();
         });
     }
 
@@ -31,6 +30,6 @@ class CreateCartelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cartels');
+        Schema::dropIfExists('failed_jobs');
     }
 }

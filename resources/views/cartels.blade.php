@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             <h1>Cartels</h1>
+            <p>Money: <strong>${{ Auth::user()->money }}</strong></p>
         </div>
 
         <div class="row">
@@ -14,7 +15,6 @@
                         <div class="panel-body">
                             <ul>
                                 <li>Location: <strong>({{ $cartel->location_x }}, {{ $cartel->location_y }})</strong></li>
-                                <li>Money: <strong>${{ $cartel->money }}</strong></li>
                                 @foreach($cartel->cartelResources as $cartelResource)
                                     <li>{{ $cartelResource->resource->name }} produced: <strong>{{ $cartelResource->amount }}g</strong></li>
                                 @endforeach

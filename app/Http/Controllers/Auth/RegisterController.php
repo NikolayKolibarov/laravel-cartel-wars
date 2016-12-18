@@ -81,7 +81,6 @@ class RegisterController extends Controller
         $colombian_cartel->location_x = rand(0, 100);
         $colombian_cartel->location_y = rand(0, 100);
         $colombian_cartel->level = 1;
-        $colombian_cartel->money = 2000;
         $colombian_cartel->save();
 
         foreach ($colombian_cartel->cartelType->resourceBuildings as $resourceBuilding) {
@@ -104,7 +103,6 @@ class RegisterController extends Controller
         $russian_cartel->location_x = rand(0, 100);
         $russian_cartel->location_y = rand(0, 100);
         $russian_cartel->level = 1;
-        $russian_cartel->money = 2000;
         $russian_cartel->save();
 
         foreach ($russian_cartel->cartelType->resourceBuildings as $resourceBuilding) {

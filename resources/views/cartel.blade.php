@@ -4,18 +4,56 @@
     <div class="container">
         <div class="row">
             <h1>{{ $cartel->cartelType->name }}</h1>
-            <p>Money: <strong> ${{ $cartel->money }}</strong></p>
         </div>
 
         <div class="row">
-            <a href="{{ route('cartel-factory', ['type' => $cartel->cartelType->name]) }}" class="btn btn-default">Factory</a>
+            <a href="{{ route('cartel-factory', ['cartelId' => $cartel->id]) }}" class="btn btn-default">Factory</a>
         </div>
 
+        <div class="row">
+            @if(Session::has('added'))
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="alert alert-success">
+                                <p class="has-success">{{ Session::get('added') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('edited'))
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="alert alert-success">
+                                <p class="has-success">{{ Session::get('edited') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if(Session::has('deleted'))
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="alert alert-success">
+                                <p class="has-success">{{ Session::get('deleted') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+
+        <p></p>
 
         <div class="row">
-            @foreach($cartel->cartelResourceBuildings as $cartelResourceBuilding)
+            <div class="col-md-5">
+                @foreach($cartel->cartelResourceBuildings as $cartelResourceBuilding)
 
-                <div class="col-md-4 col-md-offset-1">
                     <div class="panel panel-default">
                         <div class="panel-heading">{{ $cartelResourceBuilding->resourceBuilding->name}} - Level:
                             <strong>{{ $cartelResourceBuilding->level }}</strong></div>
@@ -28,12 +66,37 @@
                                     @endif
                                 @endforeach
                                 <li>{{ $cartelResourceBuilding->resourceBuilding->resource->name }} per hour:
-                                    <strong>{{ $cartelResourceBuilding->resourceBuilding->income_per_hour }}g</strong></li>
+                                    <strong>{{ $cartelResourceBuilding->resourceBuilding->income_per_hour }}g</strong>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+
+            <div class="col-md-5">
+                @foreach($cartel->cartelArmyBuildings as $cartelArmyBuilding)
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{ $cartelArmyBuilding->armyBuilding->name}} - Level:
+                            <strong>{{ $cartelArmyBuilding->level }}</strong></div>
+                        <div class="panel-body">
+                            <p>Units</p>
+                            @foreach($cartelArmyBuilding->armyBuilding->armyUnits as $armyUnit)
+
+                                <form action="">
+                                    <strong>{{ $armyUnit->name }} </strong> - (HP:
+                                    <strong>{{ $armyUnit->health }}</strong> / ATK:
+                                    <strong>{{ $armyUnit->attack }}</strong> )
+                                    <input type="number" name="unit_count">
+                                    <button class="btn btn-default">Train</button>
+                                </form>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
         </div>
     </div>
 @endsection
