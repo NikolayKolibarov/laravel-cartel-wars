@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Cartel;
+use App\CartelResource;
 use App\CartelType;
 use App\User;
 use Validator;
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/dashboard/all';
 
     /**
      * Create a new controller instance.
@@ -81,6 +82,14 @@ class RegisterController extends Controller
         $colombian_cartel->level = 1;
         $colombian_cartel->save();
 
+        foreach ($colombian_cartel->cartelType->resourceBuildings as $resourceBuilding) {
+            $cartelResource = new CartelResource();
+            $cartelResource->cartel()->associate($colombian_cartel);
+            $cartelResource->resource()->associate($resourceBuilding->resource);
+            $cartelResource->amount = $resourceBuilding->initial_resource_amount;
+            $cartelResource->save();
+        }
+
         $russian_cartel = new Cartel();
         $russian_cartel->user()->associate($user);
         $russian_cartel->cartelType()->associate($bratva);
@@ -88,6 +97,14 @@ class RegisterController extends Controller
         $russian_cartel->location_y = rand(0, 100);
         $russian_cartel->level = 1;
         $russian_cartel->save();
+
+        foreach ($russian_cartel->cartelType->resourceBuildings as $resourceBuilding) {
+            $cartelResource = new CartelResource();
+            $cartelResource->cartel()->associate($russian_cartel);
+            $cartelResource->resource()->associate($resourceBuilding->resource);
+            $cartelResource->amount = $resourceBuilding->initial_resource_amount;
+            $cartelResource->save();
+        }
 
         return $user;
 

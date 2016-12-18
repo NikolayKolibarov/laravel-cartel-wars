@@ -14,7 +14,9 @@
                         <div class="panel-body">
                             <ul>
                                 <li>Location: <strong>({{ $cartel->location_x }}, {{ $cartel->location_y }})</strong></li>
-                                <li>Cocaine produced: <strong>50g</strong></li>
+                                @foreach($cartel->cartelResources as $cartelResource)
+                                    <li>{{ $cartelResource->resource->name }} produced: <strong>{{ $cartelResource->amount }}g</strong></li>
+                                @endforeach
                             </ul>
                             <a href="{{ route('cartel-details', ['cartel_id' => $cartel->id]) }}" class="btn btn-default">View</a>
                         </div>

@@ -11,11 +11,17 @@
 
                 <div class="col-md-4 col-md-offset-2">
                     <div class="panel panel-default">
-                        <div class="panel-heading">{{ $resourceBuilding->name}} - Level: <strong>{{ $resourceBuilding->level }}</strong></div>
+                        <div class="panel-heading">{{ $resourceBuilding->name}} - Level:
+                            <strong>{{ $resourceBuilding->level }}</strong></div>
                         <div class="panel-body">
                             <ul>
-                                <li>{{ $resourceBuilding->resource->name }} produced: <strong>50g</strong></li>
-                                <li>{{ $resourceBuilding->resource->name }} per minute: <strong>0,5g</strong></li>
+                                @foreach($cartel->cartelResources as $cartelResource)
+                                    @if($cartelResource->resource->name == $resourceBuilding->resource->name)
+                                        <li>{{ $cartelResource->resource->name }} produced: <strong>{{ $cartelResource->amount }}g</strong></li>
+                                    @endif
+                                @endforeach
+                                <li>{{ $resourceBuilding->resource->name }} per hour:
+                                    <strong>{{ $resourceBuilding->income_per_hour }}g</strong></li>
                             </ul>
                         </div>
                     </div>

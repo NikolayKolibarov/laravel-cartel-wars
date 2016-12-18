@@ -16,4 +16,9 @@ class Cartel extends Model
         return $this->belongsTo('App\CartelType');
     }
 
+    public function cartelResources()
+    {
+        return $this->hasMany('App\CartelResource');
+    }
+
 }

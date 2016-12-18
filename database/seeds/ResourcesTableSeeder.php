@@ -22,5 +22,6 @@ class ResourcesTableSeeder extends Seeder
         $resource->name = 'Cocaine';
         $resource->save();
 
+
     }
 }
